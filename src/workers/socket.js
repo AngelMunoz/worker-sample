@@ -16,6 +16,7 @@ function logSocket(data) {
 function onConnect(workerEvent) {
   // open your websocket
   socket = new WebSocket(
+    // taken from https://www.piesocket.com/websocket-tester
     "wss://demo.piesocket.com/v3/channel_1?api_key=VCXCEuvhGcBDP7XhiJJUDvR1e1D3eiVjgZ9VRiaV&notify_self"
   );
   // add the corresponding listeners you might have for these
