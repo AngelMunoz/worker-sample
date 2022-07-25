@@ -1,18 +1,22 @@
-import { useEffect, useState } from "react";
-import { subscribe, sendMessage } from "./services/socket";
-import logo from "./logo.svg";
 import "./App.css";
+import logo from "./logo.svg";
+import { useEffect, useState } from "react";
+// use our services
 import logger from "./services/log";
+import { subscribe, sendMessage } from "./services/socket";
 
 function App() {
   const [logs, setLog] = useState([]);
 
   useEffect(() => {
-    const sub = subscribe((event) => {
+    const unsubscribe = subscribe((event) => {
       logger.debug(event);
       setLog((logs) => [event, ...logs]);
     });
-    return sub;
+    // not used here, but in case we need to
+    // we provide cleanup function that removes the listener
+    // to the web socket
+    return unsubscribe;
   }, []);
 
   return (
@@ -26,7 +30,7 @@ function App() {
         >
           Send Message
         </button>
-
+        {/* dummy logger here */}
         <pre className="log">
           {logs.map(({ data }, i) => {
             return (

@@ -1,3 +1,5 @@
+// a fake log service just to test if we can actually import things in our worker as well as our non-worker code
+
 export function log(format = "[%s] - ", level, message) {
   const time = new Date().toLocaleTimeString();
   switch (level) {
